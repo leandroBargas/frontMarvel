@@ -3,14 +3,14 @@ import { get } from '../../httpRequest';
 import Hero from '../hero';
 
 function Home() {
-  const [heros, setHeros] = useState(null);
+  const [heroes, setHeroes] = useState(null);
   const [limit, setLimit] = useState(30);
   const [search, setSearch] = useState('');
   React.useEffect(() => {
     get('/?limit=' + limit + '&search=' + search)
       .then((res) => {
-        const heros = res.data.data.results;
-        setHeros(heros);
+        const heroes = res.data.data.results;
+        setHeroes(heroes);
       })
       .catch((error) => {
         console.log(error);
@@ -43,9 +43,9 @@ function Home() {
         </select>
       </div>
 
-      {heros ? (
+      {heroes ? (
         <section className="wrapper-comics">
-          {heros.map((item) => (
+          {heroes.map((item) => (
             <React.Fragment key={item.id}>
               <Hero
                 url={''}
@@ -57,7 +57,7 @@ function Home() {
         </section>
       ) : (
         <section className="wrapper-call">
-          <h1>Encontre seu Heroi Favorito</h1>
+          <h1>Encontre seu Herói Favorito</h1>
         </section>
       )}
     </div>
