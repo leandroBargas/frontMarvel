@@ -2,12 +2,12 @@ import React from 'react';
 
 const Hero = ({ url, title, thumbnail }) => (
   <React.Fragment>
-    <a className="thumbnail wrapper" href={url} target="_blank">
+    <div className="thumbnail wrapper">
       <img className="thumbnail-img" src={thumbnail} alt={thumbnail} />
       <div className="thumbnail-overlay">
         <span className="thumbnail-text">{title}</span>
       </div>
-    </a>
+    </div>
   </React.Fragment>
 );
 

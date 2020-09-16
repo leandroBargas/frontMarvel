@@ -5,8 +5,9 @@ import Hero from '../hero';
 function Home() {
   const [heros, setHeros] = useState(null);
   const [limit, setLimit] = useState(30);
+  const [search, setSearch] = useState('');
   React.useEffect(() => {
-    get('/?limit=' + limit)
+    get('/?limit=' + limit + '&search=' + search)
       .then((res) => {
         const heros = res.data.data.results;
         setHeros(heros);
@@ -14,13 +15,20 @@ function Home() {
       .catch((error) => {
         console.log(error);
       });
-  }, [limit]);
+  }, [limit, search]);
 
   return (
     <div className="content">
       <div>
-        <input name="search" placeholder="pequisar" />
+        <input
+          className="search-bar"
+          name="search"
+          placeholder="pequisar"
+          value={search}
+          onChange={(event) => setSearch(event.target.value)}
+        />
         <select
+          className="limit"
           name="limit"
           id="limit"
           value={limit}
@@ -47,11 +55,7 @@ function Home() {
         </section>
       ) : (
         <section className="wrapper-call">
-          <h1>FIND THE COMICS OF YOUR FAVORITE SUPERHERO</h1>
-          <h2>
-            typing the name of hero or clicking in start now to show them
-            aleatoring
-          </h2>
+          <h1>Encontre seu Heroi Favorito</h1>
         </section>
       )}
     </div>
